@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load static %}
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JobTrue - Company Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'app/css/companystyle.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+
+    <nav class="navbar sticky-top navbar-dark bg-dark navbar-expand-lg ">
+      <div class="container" style="max-width: 70rem;">
+        <a class="logo" href="{% url 'index' %}"><i class="fa-solid fa-seedling"></i>TrueJOB</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav" style="width: 100%;justify-content: center;">
+            <li class="nav-item nav_first" style="padding-top: 4px;">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item _divfgt" style="padding-top: 4px;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Employees
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if request.user.is_authenticated %}
+                    <a class="dropdown-item" href="{% url 'resume_data' %}">Your Resume</a>
+                    <a class="dropdown-item" href="{% url 'resume' %}">Submit Resume</a>
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'login' %}">Your Resume</a>
+                    <a class="dropdown-item" href="{% url 'login' %}">Submit Resume</a>
+                    {% endif %}
+                </div>
+            </li>
+            <li class="nav-item _divfgt" style="padding-top: 4px;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Recruiters
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if request.user.is_authenticated %}
+                    <a class="dropdown-item" href="{% url 'jobs' %}">Submit Jobs</a>
+                    <a class="dropdown-item" href="{% url 'company_data' %}">Your Companies</a>
+                    <a class="dropdown-item" href="{% url 'company' %}">Add Company</a>
+                    <a class="dropdown-item" href="{% url 'jobs_and_company_data' %}">Check Applied</a>
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'login' %}">Submit Jobs</a>
+                    <a class="dropdown-item" href="{% url 'login' %}">Your Companies</a>
+                    <a class="dropdown-item" href="{% url 'login' %}">Add Company</a>
+                    <a class="dropdown-item" href="{% url 'login' %}">Check Applied</a>
+                    {% endif %}
+                </div>
+            </li>
+
+            <li class="nav-item _divfgt" style="padding-top: 4px;">
+                {% if request.user.is_authenticated %}
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Contact</a>
+                {% endif %}
+            </li>
+          </ul>
+          <div class="btn-group">
+            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {% if request.user.image %}
+                <img src="{{request.user.image.url}}" width="35" height="35" style="border-radius: 50%;" alt="">
+                {% else %}
+                <i class="fa fa-user-circle fa-2x" style="color: #b3e671;"></i>
+                {% endif %}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="#navbarDropdown">
+                {% if not request.user.is_authenticated %}
+                <a class="dropdown-item" href="{% url 'login' %}"> 
+                    <img src="{% static 'app/img/enter.png' %}" alt="no"> Login</a>
+                <a class="dropdown-item" href="{% url 'signup' %}"> 
+                    <img src="{% static 'app/img/sign-up.png' %}" alt="no"> Signup</a>
+                {% else %}
+                <a class="dropdown-item" href="{% url 'accounts' %}"> 
+                    <img src="{% static 'app/img/setting.png' %}" alt="no"> Account</a>
+                <a class="dropdown-item" href="{% url 'logout' %}"> 
+                    <img src="{% static 'app/img/logout.png' %}" alt="no"> Logout</a>
+                {% endif %}
+            </div>
+        </div>          
+      </div>
+    </nav>
+
+    <div class="container mt-5" style="max-width: 45rem;">
+        {% if company_data %}
+        {% for data in company_data %}
+        <div class="card size_card mb-5">
+            <div class="first_field">
+                <div class="row g-0">
+                    <div class="col-md-4 size_of_fields">
+                        <div class="img_company">
+                            <img src="{{data.logo.url}}" class="img_sizedr" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-8 size_of_fields">
+                        <div class="title_head">
+                            <h5 class="card-title">{{data.company_name}}</h5>
+                        </div>
+                        <div class="industry_types d-flex">
+                            <p class="para_indus" style="width: 65%;">
+                                <svg width="15" height="15" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                                    <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                                  </svg>
+                                {{data.industry_type}}
+                            </p>
+                            <p class="para_indus">
+                                <svg width="15" height="15" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                  </svg>
+                                {{data.city}}, {{data.headquarter}}
+                            </p>
+                        </div>
+                        <div class="email_types d-flex">
+                            <p class="para_indus" style="width: 65%;">
+                                <svg width="15" height="15" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                                </svg>
+                                {{data.email}}
+                            </p>
+                            <p class="para_indus">
+                                <svg width="15" height="15" fill="currentColor" class="bi bi-phone-fill" viewBox="0 0 16 16">
+                                    <path d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"/>
+                                </svg>
+                                +91 {{data.phone}}
+                            </p>
+                        </div>
+                        <div class="date_types" style="text-align: right;">
+                            <p class="para_date"><span style="font-weight: 650;">Company started in {{data.start_date}}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="second_field">
+                <div class="para_disc">
+                    <p class="discrty">{{data.discription}}</p>
+                </div>
+            </div>
+            <div class="third_field p-2 d-flex" style="border-top: 1px solid #a8a8a8;">
+                <div class="edit_para pt-1" style="width: 100%;">
+                    <a href="{% url 'company_data_edit' data.id %}" class="_edit_prt">Edit</a>
+                </div>
+                <div class="del_para">
+                    <form action="{% url 'company_data_delete' data.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" class="_btn_del" value="Remove">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="no_data text-center pt-5">
+            <p style="font-size: 20px;font-weight: 550;color: #4b4b4b;">No Company Data</p>
+        </div>
+        {% endif %}
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+  </body>
+</html>
