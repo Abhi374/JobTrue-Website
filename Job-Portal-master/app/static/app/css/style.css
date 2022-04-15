@@ -111,15 +111,15 @@
 .slider-btn .btn {
   height: 70px;
   width: 40%;
-  border: 1px solid rgb(130, 231, 155);
+  border: 1px solid royalblue;
   background: transparent;
-  border-radius: 5px;
-  color: rgb(130, 231, 144);
+  border-radius: 10px;
+  color: royalblue;
   transition: all 0.4s;
 }
 
 .slider-btn .btn:hover {
-  background: rgb(102, 214, 130);
+  background: royalblue;
   color: white;
   border: none;
   outline: none;

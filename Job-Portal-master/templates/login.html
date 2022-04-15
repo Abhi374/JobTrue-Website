@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <title>JobTrue - login</title>
+    <title>TrueJob - login</title>
     <link rel="stylesheet" href="{% static 'app/css/loginstyle.css' %}" />
     <link
       rel="stylesheet"
@@ -26,13 +26,17 @@
           {{forms.username}}
           <div class="underline"></div>
         </div>
-        <div class="input-box">
+        <div class="input-box form-control">
           {{forms.password}}
           <div class="underline"></div>
+          
         </div>
-        <div class="divfp my-5">
+        <div class="abhi">
+        <!-- <input type="checkbox" onclick="myFunction()">Show Password -->
+      </div>
+        <!-- <div class="divfp my-5">
           <a href="{% url 'forgetpassword'%}" class="fp">Forget Password?</a>
-        </div>
+        </div> -->
         
         <div class="errors_fm" style="text-align: center;">
           {% if forms.non_field_errors %}
@@ -49,5 +53,17 @@
         <a href="{% url 'index' %}"><i class="fa fa-backward"></i>Back to Home</a>
       </div>
     </div>
+
+    <script>
+      function myFunction() {
+        var x = document.getElementsByClassName("show");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+      
+    </script>
   </body>
 </html>

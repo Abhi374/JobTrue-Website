@@ -35,7 +35,7 @@ class LogInForm(AuthenticationForm):
         attrs={'placeholder':'Email Address'}
     ))
     password = forms.CharField(widget=forms.PasswordInput(
-        attrs={'placeholder':'Password'}
+        attrs={'placeholder':'Password', 'class':'show form-control'}
     ))
     
     

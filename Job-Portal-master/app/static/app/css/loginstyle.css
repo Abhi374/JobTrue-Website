@@ -17,6 +17,10 @@ html, body{
   background: #80ff9c;
 
 }
+.abhi{
+  display: flex;
+  justify-content: flex-end;
+}
 .container{
   background: #fff;
   max-width: 350px;
