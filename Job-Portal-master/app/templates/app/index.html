@@ -281,15 +281,15 @@
 
 
     <div id="browse">
-        <section class="main py-3" style="background-image:url({% static 'app/img/main1.jpg' %});">
+        <section class="main py-3" style="background-image:url({% static 'app/img/main2.jpg' %});">
             <div class="container py-3">
                 <div class="row">
                     <form method="get" action="{% url 'searchjobs' %}">
                         <div class="col-lg-7">
-                            <h1 style=" text-shadow: 2px 2px #08f13b">
+                            <h1>
                                 Find Most Exciting Jobs<br> you Deserve
                             </h1>
-                            <input type="text" name="ijob" id="search-job" placeholder="Job Title or Keyword">
+                            <input type="text" name="ijob" id="search-job" placeholder="Job Title like Python Developer" autocomplete="off">
                             <a href="{% url 'searchjobs' %}"><button class="btn-2 mt-5">Find Job</button></a>
                         </div>
                     </form>

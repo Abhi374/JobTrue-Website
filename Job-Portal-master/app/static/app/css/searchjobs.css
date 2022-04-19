@@ -85,9 +85,15 @@ body{
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   margin-left: -4px;
-  background-color: lime;
+  background-color: #348F50;
+}
+.image{
+  transition: 1s;
 }
 
+.image:hover{
+  transform: scale(1.2);
+}
 
 input:focus {
   background-color: rgb(217, 247, 249);

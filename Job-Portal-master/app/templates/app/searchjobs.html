@@ -109,8 +109,9 @@
               type="search"
               name="sjob"
               id="search-item"
-              placeholder="Search job title or keyword"
+              placeholder="Job Title like Python Developer"
               onkeyup="search()"
+              autocomplete="off"
             />
             <button type="submit" class="btn_sefdt"><i class="fas fa-search"></i></button>
           </form>
@@ -123,11 +124,9 @@
             <div class="card " style="border: none;">
               <div class="jobs ">
                 <div class="row g-0 row_class">
-                  <div class="col-md-4 text-center">
-                    <img src="{{data.company_name.logo.url}}" class="img_size" alt="" />
-                  </div>
+                  
                   <div class="col-md-8 j-details">
-                    <h2 style="color: #444444;">{{data.company_name}}</h2>
+                    <h2 style="color: royalblue;">{{data.company_name}}</h2>
                     <div class="loc_type mt-4 d-flex">
                       <p class="_types mt-1">
                         <svg width="18" height="18" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -150,6 +149,9 @@
                         </p>
                       </div>
                     </div>
+                  </div>
+                  <div class="col-md-4 text-center image">
+                    <img src="{{data.company_name.logo.url}}"  class="img_size" alt="" />
                   </div>
                 </div>
               </div>
