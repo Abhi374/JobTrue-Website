@@ -18,12 +18,26 @@
     <title>TrueJob - Home</title>
 </head>
 
-<body>
+<body id="test">
+    <!-- <div id="loading"></div> -->
+
+       <!-- Preloader Start -->
+       <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <i style="color:green" class="fa-solid fa-seedling"></i>TrueJOB
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
 
     
-    <nav class="navbar   navbar-dark  navbar-expand-lg ">
+    <nav class="navbar sticky-top apna  navbar-dark bg-dark  navbar-expand-lg " >
         <div class="container" style="max-width: 70rem;">
-                <a title="india most" class="logo" href="{% url 'index' %}"><i class="fa-solid fa-seedling"></i>TrueJOB</a>
+                <a title="India's most trustable website" class="logo" href="{% url 'index' %}"><i class="fa-solid fa-seedling"></i>TrueJOB</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -79,7 +93,7 @@
                 </ul>
             </div>
             <!-- Default dropleft button -->
-            <div class="btn-group" title="Your Profile">
+            <div class="btn-group" title="Your Profile" >
                 <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     {% if request.user.image %}
@@ -173,12 +187,12 @@
             </div>
          </div> 
     </section>
-    <div id="progress-bar"></div>
+    
    
 
     <!----------------------------------------------------------CATEGORY SECTION--------------------------------------->
 
-    <section class="cate py-2">
+    <section class="cate py-2" >
         <div class="container-fluid py-2 text-center">
             <h1>Browse Top Categories</h1>
             <div class="row py-5">
@@ -350,7 +364,7 @@
 
     <!---------------------------------------------FOOTER SECTION------------------------------------------------>
 
-    <section class="footer py-2">
+    <section class="footer py-2 section-footer">
         <div class="container-fluid py-2">
             <div class="row py-3">
                 <div class="col-lg-10 m-auto">
@@ -377,15 +391,22 @@
                             </div>
                         </div>
                     </div>
+
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i style="color:red" class="fa fa-heart" aria-hidden="true"></i> by <span style="color:green"><b>TrueJob</b></span>
                 </div>
             </div>
         </div>
     </section>
 
+    {% comment %} Scroll to top section {% endcomment %}
+    
+
+
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -396,8 +417,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="{% static 'app/js/progress.js' %}"></script>
+    
+   
     <script src="{% static 'app/js/searchjobs.js' %}"></script>
-</body>
+    
+    <script src="{% static 'app/js/main.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    
+    <!-- <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"><i class="fa-solid fa-arrow-up"></i></a> -->
+</body>
 </html>
